@@ -170,23 +170,21 @@
         });
 
         // ===== 스크롤 애니메이션 (섹션이 보일 때 페이드인) =====
-        const observerOptions = {
-            threshold: 0.2,
-            rootMargin: '0px 0px -100px 0px'
-        };
+        if ('IntersectionObserver' in window &&
+            !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
+            document.querySelectorAll('.section-content').forEach(section => {
+                observer.observe(section);
             });
-        }, observerOptions);
-
-        // 모든 섹션 콘텐츠에 옵저버 적용
-        document.querySelectorAll('.section-content').forEach(section => {
-            observer.observe(section);
-        });
+        }
     </script>
 </body>
 </html>

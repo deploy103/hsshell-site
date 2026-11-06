@@ -157,14 +157,10 @@
         .section-content {
             max-width: 1200px;
             width: 100%;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease;
         }
 
         .section-content.visible {
-            opacity: 1;
-            transform: translateY(0);
+            animation: fadeInUp 0.8s ease;
         }
 
         .section-number {
@@ -443,5 +439,18 @@
             .footer-info {
                 flex-direction: column;
                 gap: 30px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation: none !important;
+                transition: none !important;
             }
         }
