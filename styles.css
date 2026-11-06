@@ -392,14 +392,8 @@
             margin-bottom: 5px;
         }
 
-        .footer-info a {
+        .account-name {
             color: #aaa;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-info a:hover {
-            color: #4facfe;
         }
 
         .footer-bottom {
